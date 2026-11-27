@@ -1,0 +1,165 @@
+:root {
+  --sky: #9cc9f0;
+  --ground: #b58a5a;
+}
+
+:root[data-theme="dark"] {
+  --sky: #2a5c8f;
+  --ground: #6b4a2a;
+}
+
+.picker {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.picker button,
+.controls button {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.picker button[aria-pressed="true"] {
+  border: 3px solid var(--link);
+  font-weight: bold;
+}
+
+.picker .summary {
+  display: block;
+  font-weight: normal;
+  color: var(--muted);
+}
+
+.stage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.indicator {
+  margin: 0;
+  text-align: center;
+}
+
+.indicator svg {
+  display: block;
+  width: 100%;
+  max-width: 14rem;
+  height: auto;
+  margin: 0 auto;
+}
+
+.indicator figcaption {
+  margin-top: 0.25rem;
+  font-weight: bold;
+}
+
+.indicator .reading {
+  display: block;
+  font-weight: normal;
+  color: var(--muted);
+}
+
+.sky {
+  fill: var(--sky);
+}
+
+.ground {
+  fill: var(--ground);
+}
+
+.horizon-line,
+.ladder {
+  stroke: var(--text);
+  stroke-width: 2;
+}
+
+.horizon {
+  transform-origin: 100px 100px;
+  transition: transform 1.2s ease-in-out;
+}
+
+.dial {
+  fill: none;
+  stroke: var(--text);
+  stroke-width: 4;
+}
+
+.plane-outline {
+  fill: none;
+  stroke: var(--bg);
+  stroke-width: 9;
+  stroke-linecap: round;
+}
+
+.plane {
+  fill: none;
+  stroke: var(--text);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.explanation {
+  margin: 0 0 1rem;
+  padding: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.explanation h3 {
+  margin: 0 0 0.5rem;
+}
+
+.step-count {
+  margin: 0 0 0.25rem;
+  color: var(--muted);
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.controls button {
+  text-align: center;
+}
+
+.controls button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.note {
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+}
+
+@media (min-width: 600px) {
+  .picker {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .horizon {
+    transition: none;
+  }
+}

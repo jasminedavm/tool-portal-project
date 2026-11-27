@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spatial disorientation illusions</title>
+  <link rel="stylesheet" href="../../css/styles.css">
+  <link rel="stylesheet" href="disorientation.css">
+  <script src="../../js/theme.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <h1 class="site-title">Tool Portal</h1>
+    <button id="theme-toggle" class="theme-toggle" type="button">Switch to dark theme</button>
+  </header>
+
+  <main>
+    <a class="back-link" href="../../index.html">&larr; Back to portal</a>
+    <h2>Spatial disorientation illusions</h2>
+    <p>Spatial disorientation is when a pilot's sense of position, motion, or attitude (how the aircraft is tilted) doesn't match reality. Pick an illusion, then press Next to step through it. The left dial shows what the aircraft is really doing, and the right dial shows what the pilot feels.</p>
+
+    <ul id="picker" class="picker"></ul>
+
+    <div id="stage" class="stage"></div>
+
+    <div id="explanation" class="explanation" aria-live="polite"></div>
+
+    <div class="controls">
+      <button id="previous" type="button">&larr; Previous</button>
+      <button id="next" type="button">Next &rarr;</button>
+    </div>
+
+    <p class="note">For learning only. The angles and timings are illustrative, not exact. In real flight, the lesson is the same for every illusion: trust the instruments over your body's sensations. This tool must not be used for real flight-safety decisions.</p>
+  </main>
+
+  <script src="illusions.js"></script>
+  <script src="page.js"></script>
+</body>
+</html>
