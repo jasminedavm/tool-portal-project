@@ -27,6 +27,7 @@ A web portal where students try out small web tools. The subject area is aviatio
 - `tools/altitude/` - the altitude and hypoxia explorer (`index.html`, `model.js`, `page.js`, `altitude.css`)
 - `tools/disorientation/` - the spatial disorientation illusions (`index.html`, `illusions.js` for the data, `page.js`, `disorientation.css`)
 - `css/styles.css` - the design tokens (colors, fonts, spacing) and shared components; every page loads it
+- `css/background.css` - the aviation background artwork; `styles.css` imports it, so pages get it automatically
 - `js/theme.js` - the light/dark theme toggle
 
 ## Key Requirements
@@ -51,6 +52,7 @@ None yet. Until tests exist, check changes by hand in a browser.
 
 ## Gotchas
 - The Google Fonts `<link>` tags must be in the `<head>` of every page, before `css/styles.css`. Without internet the pages still work, using the fallback fonts.
+- Background art: `css/background.css` uses the `html::before`, `body::before`, and `body::after` pseudo-elements. Don't use those for anything else.
 - Page headings: the site name in the header is a `<p>`, each page has exactly one `<h1>`, and sections inside a tool page are `<h2>`.
 
 ## Design Direction
@@ -66,14 +68,28 @@ Both themes use the same token names. The default is the light theme.
 | `--surface` | `#FBF8F1` | `#1A1D20` | Panels (results, explanations) |
 | `--text` | `#1B1B1B` | `#F1EEE6` | Body text, strong rules, button borders |
 | `--muted` | `#575246` | `#B5B0A3` | Secondary text |
-| `--accent` | `#B8400A` | `#FF9A57` | Links, numbers, chart lines, focus ring, selected state |
+| `--accent` | `#963306` | `#FF9A57` | Links, numbers, chart lines, focus ring, selected state |
 | `--border` | `#C9C2B2` | `#3A3D40` | Hairline dividers (decoration only, never the only edge of a control) |
 
 - Use one accent color only. Everything else is text, background, or border.
-- Measured contrast on the page background: text 15:1 (light) and 16:1 (dark), muted text 6.8:1 and 8.7:1, accent 4.9:1 and 9.0:1. All pass the 4.5:1 minimum. Check new colors the same way.
+- Measured contrast on the page background: text 15:1 (light) and 16:1 (dark), muted text 6.8:1 and 8.7:1, accent 6.6:1 and 8.9:1. All pass the 4.5:1 minimum, and text over the background artwork was also checked pixel by pixel (worst case 4.5:1). Check new colors and any change to the background the same way.
 - Controls need a visible edge: inputs and buttons use a 2px `--text` border.
 - Do not rely on color alone to show a state (for example, a selected button also gets a thicker accent edge and bold text).
 - Diagram colors that carry meaning (the sky and ground on the attitude dials) are tool-specific tokens in that tool's CSS, with a light and a dark value.
+
+### Background
+Every page has an aviation-themed background drawn behind the content. It combines four themes, all faint:
+- **Sky:** a light blue-gray wash at the top of the page, and soft clouds.
+- **Chart:** a fine map grid (small squares with heavier lines every 200px), contour lines, and dashed flight paths with waypoints, in the accent color.
+- **Compass and radar:** a compass rose with a tick ring on the right, and range rings with a sweep line on the lower left.
+- **Runway:** edge lines, a dashed centerline, and threshold stripes along the bottom.
+
+Rules:
+- It lives only in `css/background.css`. Pages and tools do not add their own background art.
+- It is fixed to the window and never takes clicks. Content panels, inputs, and buttons keep solid backgrounds.
+- Colors come from tokens: `--sky-wash`, `--grid-minor`, `--grid-major`, `--deco-ink`, and `--deco-accent`. Keep them faint (ink about 9%, accent about 20%), and recheck text contrast over the artwork if you change them.
+- The shapes are SVG masks written inline as `data:` URLs, because separate SVG files cannot be used as masks when a page is opened straight from disk.
+- It is hidden when printing. On phones the artwork shifts so the compass side shows.
 
 ### Typography
 - Body and headings: **Space Grotesk** (`--font-body`), weights 400, 500, 700.

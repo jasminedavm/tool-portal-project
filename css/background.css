@@ -1,0 +1,196 @@
+/*
+  Aviation background (see CLAUDE.md, Design Direction > Background).
+  Four themes, layered and kept faint so text stays easy to read:
+  - sky: a light wash at the top of the page, plus clouds
+  - chart: a fine map grid, contour lines, and dashed flight paths
+  - compass and radar: a compass rose and range rings
+  - runway: edge lines, a dashed centerline, and threshold stripes
+  Everything is decoration drawn behind the content. It never takes clicks.
+  Shapes are SVG masks, so their colors follow the theme tokens.
+*/
+
+:root {
+  --sky-wash: rgb(127 166 194 / 0.08);
+  --grid-minor: color-mix(in srgb, var(--text) 3.5%, transparent);
+  --grid-major: color-mix(in srgb, var(--text) 6%, transparent);
+  --deco-ink: color-mix(in srgb, var(--text) 9%, transparent);
+  --deco-accent: color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+:root[data-theme="dark"] {
+  --sky-wash: rgb(60 100 140 / 0.18);
+  --deco-ink: color-mix(in srgb, var(--text) 9%, transparent);
+  --deco-accent: color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+/* Layer 1: sky wash and chart grid */
+html::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to bottom, var(--sky-wash), transparent 28rem),
+    linear-gradient(var(--grid-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-major) 1px, transparent 1px),
+    linear-gradient(var(--grid-minor) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-minor) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    200px 200px,
+    200px 200px,
+    40px 40px,
+    40px 40px;
+}
+
+/* Layer 2: ink shapes (clouds, contour lines, compass rose, radar rings, runway) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--deco-ink);
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-image: url("data:image/svg+xml,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1000'>\
+<defs><g id='cloud'>\
+<ellipse cx='0' cy='20' rx='120' ry='26'/><ellipse cx='-45' cy='-2' rx='56' ry='34'/>\
+<ellipse cx='20' cy='-14' rx='70' ry='44'/><ellipse cx='72' cy='6' rx='48' ry='28'/>\
+</g></defs>\
+<g fill='black' stroke='none'>\
+<g fill-opacity='.22'><use href='%23cloud' transform='translate(300 150) scale(1.1)'/>\
+<use href='%23cloud' transform='translate(880 230) scale(.8)'/>\
+<use href='%23cloud' transform='translate(1290 120)'/></g>\
+<g fill-opacity='.12'><use href='%23cloud' transform='translate(380 130) scale(.8)'/>\
+<use href='%23cloud' transform='translate(950 200) scale(.6)'/>\
+<use href='%23cloud' transform='translate(1200 160) scale(.7)'/></g>\
+</g>\
+<g fill='none' stroke='black' stroke-width='1.5'>\
+<g transform='translate(780 820)'>\
+<path vector-effect='non-scaling-stroke' transform='scale(.3)' d='M-250 0C-230-140-20-200 120-130S300 40 160 120-150 160-250 0Z'/>\
+<path vector-effect='non-scaling-stroke' transform='scale(.5)' d='M-250 0C-230-140-20-200 120-130S300 40 160 120-150 160-250 0Z'/>\
+<path vector-effect='non-scaling-stroke' transform='scale(.7)' d='M-250 0C-230-140-20-200 120-130S300 40 160 120-150 160-250 0Z'/>\
+<path vector-effect='non-scaling-stroke' transform='scale(.9)' d='M-250 0C-230-140-20-200 120-130S300 40 160 120-150 160-250 0Z'/>\
+<path vector-effect='non-scaling-stroke' transform='scale(1.1)' d='M-250 0C-230-140-20-200 120-130S300 40 160 120-150 160-250 0Z'/>\
+</g>\
+<g transform='translate(1360 520)'>\
+<circle r='250'/><circle r='190'/><circle r='130'/><circle r='70'/>\
+<circle r='262' stroke-width='16' stroke-dasharray='1.5 12.2'/>\
+<path d='M0-310 26-26 310 0 26 26 0 310-26 26-310 0-26-26Z'/>\
+<path d='M-190-190 190 190M190-190-190 190'/>\
+</g>\
+<g transform='translate(170 760)'>\
+<circle r='90'/><circle r='180'/><circle r='270'/><circle r='360'/>\
+<path d='M-400 0H400M0-400V400'/><path d='M0 0 260-140' stroke-width='2.5'/>\
+<circle cx='130' cy='-40' r='5'/><circle cx='70' cy='-150' r='5'/><circle cx='210' cy='100' r='5'/>\
+</g>\
+<g transform='translate(800 940) rotate(-5)'>\
+<path d='M-1000-70H1000M-1000 70H1000' stroke-width='2'/>\
+<path d='M-1000 0H1000' stroke-width='6' stroke-dasharray='60 44'/>\
+<path d='M-960-52H-880M-960-40H-880M-960-28H-880M-960-16H-880M-960 16H-880M-960 28H-880M-960 40H-880M-960 52H-880' stroke-width='5'/>\
+</g>\
+</g>\
+</svg>");
+  mask-image: url("data:image/svg+xml,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1000'>\
+<defs><g id='cloud'>\
+<ellipse cx='0' cy='20' rx='120' ry='26'/><ellipse cx='-45' cy='-2' rx='56' ry='34'/>\
+<ellipse cx='20' cy='-14' rx='70' ry='44'/><ellipse cx='72' cy='6' rx='48' ry='28'/>\
+</g></defs>\
+<g fill='black' stroke='none'>\
+<g fill-opacity='.22'><use href='%23cloud' transform='translate(300 150) scale(1.1)'/>\
+<use href='%23cloud' transform='translate(880 230) scale(.8)'/>\
+<use href='%23cloud' transform='translate(1290 120)'/></g>\
+<g fill-opacity='.12'><use href='%23cloud' transform='translate(380 130) scale(.8)'/>\
+<use href='%23cloud' transform='translate(950 200) scale(.6)'/>\
+<use href='%23cloud' transform='translate(1200 160) scale(.7)'/></g>\
+</g>\
+<g fill='none' stroke='black' stroke-width='1.5'>\
+<g transform='translate(780 820)'>\
+<path vector-effect='non-scaling-stroke' transform='scale(.3)' d='M-250 0C-230-140-20-200 120-130S300 40 160 120-150 160-250 0Z'/>\
+<path vector-effect='non-scaling-stroke' transform='scale(.5)' d='M-250 0C-230-140-20-200 120-130S300 40 160 120-150 160-250 0Z'/>\
+<path vector-effect='non-scaling-stroke' transform='scale(.7)' d='M-250 0C-230-140-20-200 120-130S300 40 160 120-150 160-250 0Z'/>\
+<path vector-effect='non-scaling-stroke' transform='scale(.9)' d='M-250 0C-230-140-20-200 120-130S300 40 160 120-150 160-250 0Z'/>\
+<path vector-effect='non-scaling-stroke' transform='scale(1.1)' d='M-250 0C-230-140-20-200 120-130S300 40 160 120-150 160-250 0Z'/>\
+</g>\
+<g transform='translate(1360 520)'>\
+<circle r='250'/><circle r='190'/><circle r='130'/><circle r='70'/>\
+<circle r='262' stroke-width='16' stroke-dasharray='1.5 12.2'/>\
+<path d='M0-310 26-26 310 0 26 26 0 310-26 26-310 0-26-26Z'/>\
+<path d='M-190-190 190 190M190-190-190 190'/>\
+</g>\
+<g transform='translate(170 760)'>\
+<circle r='90'/><circle r='180'/><circle r='270'/><circle r='360'/>\
+<path d='M-400 0H400M0-400V400'/><path d='M0 0 260-140' stroke-width='2.5'/>\
+<circle cx='130' cy='-40' r='5'/><circle cx='70' cy='-150' r='5'/><circle cx='210' cy='100' r='5'/>\
+</g>\
+<g transform='translate(800 940) rotate(-5)'>\
+<path d='M-1000-70H1000M-1000 70H1000' stroke-width='2'/>\
+<path d='M-1000 0H1000' stroke-width='6' stroke-dasharray='60 44'/>\
+<path d='M-960-52H-880M-960-40H-880M-960-28H-880M-960-16H-880M-960 16H-880M-960 28H-880M-960 40H-880M-960 52H-880' stroke-width='5'/>\
+</g>\
+</g>\
+</svg>");
+}
+
+/* Layer 3: dashed flight paths in the accent color */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--deco-accent);
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-image: url("data:image/svg+xml,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1000'>\
+<g fill='none' stroke='black' stroke-width='2.5'>\
+<path d='M-60 760Q420 120 980 360T1700 160' stroke-dasharray='12 12'/>\
+<path d='M120 1040Q760 560 1400 760' stroke-dasharray='12 12'/>\
+<g stroke-width='2'>\
+<circle cx='185' cy='495' r='8'/><circle cx='440' cy='340' r='8'/><circle cx='980' cy='360' r='8'/>\
+<circle cx='1440' cy='430' r='8'/><circle cx='760' cy='730' r='8'/><circle cx='1400' cy='760' r='8'/>\
+</g>\
+</g>\
+</svg>");
+  mask-image: url("data:image/svg+xml,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1000'>\
+<g fill='none' stroke='black' stroke-width='2.5'>\
+<path d='M-60 760Q420 120 980 360T1700 160' stroke-dasharray='12 12'/>\
+<path d='M120 1040Q760 560 1400 760' stroke-dasharray='12 12'/>\
+<g stroke-width='2'>\
+<circle cx='185' cy='495' r='8'/><circle cx='440' cy='340' r='8'/><circle cx='980' cy='360' r='8'/>\
+<circle cx='1440' cy='430' r='8'/><circle cx='760' cy='730' r='8'/><circle cx='1400' cy='760' r='8'/>\
+</g>\
+</g>\
+</svg>");
+}
+
+/* On narrow screens, show the compass side of the artwork */
+@media (max-width: 700px) {
+  body::before,
+  body::after {
+    -webkit-mask-position: 68% center;
+    mask-position: 68% center;
+  }
+}
+
+@media print {
+  html::before,
+  body::before,
+  body::after {
+    display: none;
+  }
+}
