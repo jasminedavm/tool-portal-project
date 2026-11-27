@@ -88,7 +88,7 @@
     var count = document.createElement("p");
     count.className = "step-count";
     count.textContent = illusion.name + " — step " + (stepIndex + 1) + " of " + illusion.steps.length;
-    var heading = document.createElement("h3");
+    var heading = document.createElement("h2");
     heading.textContent = step.title;
     explanation.appendChild(count);
     explanation.appendChild(heading);

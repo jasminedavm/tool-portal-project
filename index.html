@@ -4,37 +4,48 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tool Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/theme.js"></script>
 </head>
 <body>
   <header class="site-header">
-    <h1 class="site-title">Tool Portal</h1>
+    <p class="site-title">Tool Portal</p>
     <button id="theme-toggle" class="theme-toggle" type="button">Switch to dark theme</button>
   </header>
 
   <main>
-    <p>Small web tools for students of aviation human physiology. Pick a tool to try it.</p>
+    <p class="eyebrow">Aviation human physiology</p>
+    <h1>Small web tools for students of aviation human physiology</h1>
+    <p class="lead">Pick a tool to try it.</p>
 
-    <h2>Tools</h2>
-    <ul class="card-grid">
-      <li>
-        <a class="card" href="tools/fatigue/index.html">
-          <h3>Fatigue and alertness check</h3>
+    <h2 class="section-label">Tools</h2>
+    <ul class="tool-list">
+      <li class="tool-row">
+        <svg class="tool-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+        <div class="tool-text">
+          <h3><a class="tool-link" href="tools/fatigue/index.html">Fatigue and alertness check</a></h3>
           <p>Estimate how alert you are from your sleep and the time of day.</p>
-        </a>
+        </div>
+        <span class="button" aria-hidden="true">Open &rarr;</span>
       </li>
-      <li>
-        <a class="card" href="tools/altitude/index.html">
-          <h3>Altitude and hypoxia explorer</h3>
+      <li class="tool-row">
+        <svg class="tool-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20l7-12 4 6 3-4 4 10z"></path></svg>
+        <div class="tool-text">
+          <h3><a class="tool-link" href="tools/altitude/index.html">Altitude and hypoxia explorer</a></h3>
           <p>See how air pressure, oxygen, and symptoms change with altitude.</p>
-        </a>
+        </div>
+        <span class="button" aria-hidden="true">Open &rarr;</span>
       </li>
-      <li>
-        <a class="card" href="tools/disorientation/index.html">
-          <h3>Spatial disorientation illusions</h3>
+      <li class="tool-row">
+        <svg class="tool-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M4 15l16-6"></path></svg>
+        <div class="tool-text">
+          <h3><a class="tool-link" href="tools/disorientation/index.html">Spatial disorientation illusions</a></h3>
           <p>Step through four illusions and see what a pilot feels versus what is real.</p>
-        </a>
+        </div>
+        <span class="button" aria-hidden="true">Open &rarr;</span>
       </li>
     </ul>
   </main>

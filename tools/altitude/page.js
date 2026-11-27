@@ -144,7 +144,7 @@
     var oxygen = AltitudeModel.oxygenPercentOfSeaLevel(feet);
 
     resultBox.innerHTML = "";
-    var heading = document.createElement("h3");
+    var heading = document.createElement("h2");
     heading.textContent = formatFeet(feet) + " — " + stage.name;
     resultBox.appendChild(heading);
 
