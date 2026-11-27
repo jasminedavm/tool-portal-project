@@ -2,6 +2,8 @@
 
 A web portal where students try out small web tools. The subject area is aviation human physiology.
 
+**Audience:** Year 2 students of a Diploma in Aviation Management. They are future managers, not pilots, so each tool should explain why the topic matters for running aviation operations (rostering, safety culture, emergency procedures). Do not use the school's name, logo, or colors on the site.
+
 ## Tech Stack
 - Language: plain HTML, CSS, and JavaScript only
 - Framework: None (no frameworks)
@@ -67,12 +69,12 @@ Both themes use the same token names. The default is the light theme.
 | `--bg` | `#F3EFE6` | `#101214` | Page background |
 | `--surface` | `#FBF8F1` | `#1A1D20` | Panels (results, explanations) |
 | `--text` | `#1B1B1B` | `#F1EEE6` | Body text, strong rules, button borders |
-| `--muted` | `#575246` | `#B5B0A3` | Secondary text |
+| `--muted` | `#4D493E` | `#B5B0A3` | Secondary text |
 | `--accent` | `#963306` | `#FF9A57` | Links, numbers, chart lines, focus ring, selected state |
 | `--border` | `#C9C2B2` | `#3A3D40` | Hairline dividers (decoration only, never the only edge of a control) |
 
 - Use one accent color only. Everything else is text, background, or border.
-- Measured contrast on the page background: text 15:1 (light) and 16:1 (dark), muted text 6.8:1 and 8.7:1, accent 6.6:1 and 8.9:1. All pass the 4.5:1 minimum, and text over the background artwork was also checked pixel by pixel (worst case 4.5:1). Check new colors and any change to the background the same way.
+- Measured contrast on the page background: text 15:1 (light) and 16:1 (dark), muted text 7.8:1 and 8.7:1, accent 6.6:1 and 8.9:1. All pass the 4.5:1 minimum, and text over the background artwork was also checked pixel by pixel (worst case 4.8:1). Check new colors and any change to the background the same way.
 - Controls need a visible edge: inputs and buttons use a 2px `--text` border.
 - Do not rely on color alone to show a state (for example, a selected button also gets a thicker accent edge and bold text).
 - Diagram colors that carry meaning (the sky and ground on the attitude dials) are tool-specific tokens in that tool's CSS, with a light and a dark value.
@@ -107,13 +109,16 @@ Rules:
 ### Components (already in `css/styles.css`)
 - Header: `.site-header` with `.site-title` and the theme toggle.
 - Page: `.back-link`, one `h1`, `.eyebrow` and `.lead` on the homepage, `.section-label`.
-- Homepage list: `.tool-list` with one `.tool-row` per tool (icon, title link, description, "Open" button). The whole row is clickable. Icons are simple 24px line drawings with a 1.75 stroke, using `currentColor`.
+- Homepage hero: `.hero` with the `.eyebrow`, `h1`, `.lead`, and a `.sky-lane` where a small plane flies along a dashed flight path (the animation stops for visitors who ask for reduced motion). The header's site name has a small plane icon, drawn with the `--plane` token.
+- Homepage list: `.tool-list` with one `.tool-row` per tool, styled like a boarding pass: a boxed row with a number, icon, title link, description, a "Why it matters" line (`.tool-why`), and a perforated `.tool-stub` holding the "Open" button. The whole row is clickable and lifts on hover. Icons are simple 24px line drawings with a 1.75 stroke, using `currentColor`.
+- Learning boxes: `.learn` with an `.learn-label` heading. Every tool page has three: Learning objective (after the intro), Key takeaway, and Think about it (a question plus a `<details>` discussion point), the last two after the tool and before the `.note`.
 - Buttons: `.button` and `.theme-toggle`. Panels: `.result` and `.explanation`. Footnote: `.note` (every tool ends with a learning-only note). Charts: `.chart` with the `.chart-*` classes.
 - Tool-specific styles go in the tool's own CSS file and must use the tokens above.
 
 ### Rules for new tools
 - Start from an existing tool page for the `<head>` (fonts, `css/styles.css`, `js/theme.js`) and the header and back link.
 - Reuse the shared components before writing new styles.
+- Every tool page needs a learning objective, a key takeaway, and a "Think about it" question with a discussion point, written for aviation management students. Every homepage row needs a "Why it matters" line. Only state facts you are confident are correct, and flag figures that should be checked against a source.
 - Keep motion minimal, and turn it off for visitors who ask for reduced motion.
 
 ## Feature Plan
@@ -144,6 +149,10 @@ Rules:
   - Four illusions: the leans, graveyard spiral, somatogravic illusion, and Coriolis illusion.
   - Each is a step-through animation with two dials: what the aircraft is really doing, and what the pilot feels.
   - Clearly marked as for learning only; angles and timings are illustrative.
+- [x] Audience polish for Year 2 Diploma in Aviation Management students (done).
+  - Homepage wording speaks to future aviation managers, with a "Why it matters" line for each tool.
+  - Each tool has a learning objective, key takeaway, and reflection question.
+  - Livelier visuals: boarding-pass tool rows, a plane flying across the hero, and a plane icon in the header.
 - [ ] Further tools: not planned yet. Add them one at a time, using the steps above.
 
 ## Notes for Claude

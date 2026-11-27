@@ -1,6 +1,6 @@
 (function () {
   var SVG_NS = "http://www.w3.org/2000/svg";
-  var CHART = { width: 600, height: 330, left: 48, right: 15, top: 15, bottom: 56 };
+  var CHART = { width: 600, height: 330, left: 48, right: 32, top: 15, bottom: 56 };
 
   var wakeInput = document.getElementById("wake-time");
   var nowInput = document.getElementById("current-time");

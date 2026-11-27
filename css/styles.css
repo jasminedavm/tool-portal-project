@@ -8,7 +8,7 @@
   --bg: #f3efe6;
   --surface: #fbf8f1;
   --text: #1b1b1b;
-  --muted: #575246;
+  --muted: #4d493e;
   --accent: #963306;
   --border: #c9c2b2;
 
@@ -24,6 +24,7 @@
   --page-width: 70rem;
   --radius: 2px;
   --rule: 2px;
+  --plane: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><g transform='rotate(90 12 12)'><path d='M12 2c.8 0 1.3 1 1.3 2.2V9l8.7 5v2l-8.7-2.2v3.8l2.2 1.6V22L12 21l-3.5 1v-1.6l2.2-1.6v-3.8L2 16v-2l8.7-5V4.2C10.7 3 11.2 2 12 2z'/></g></svg>");
 }
 
 :root[data-theme="dark"] {
@@ -69,6 +70,18 @@ a {
   gap: var(--space-1) var(--space-2);
   padding: 0.875rem max(var(--space-2), calc((100% - var(--page-width)) / 2 + var(--space-4)));
   border-bottom: var(--rule) solid var(--text);
+}
+
+.site-title::before {
+  content: "";
+  display: inline-block;
+  width: 1.4em;
+  height: 1.4em;
+  margin-right: 0.6em;
+  vertical-align: -0.35em;
+  background: var(--accent);
+  -webkit-mask: var(--plane) center / contain no-repeat;
+  mask: var(--plane) center / contain no-repeat;
 }
 
 .site-title {
@@ -143,6 +156,44 @@ h2 {
   text-transform: uppercase;
 }
 
+/* Homepage hero: a plane flying along a dashed flight path */
+
+.sky-lane {
+  position: relative;
+  height: 2.5rem;
+  margin: calc(var(--space-3) * -1) 0 var(--space-3);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.sky-lane::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  border-top: 2px dashed var(--muted);
+  opacity: 0.5;
+}
+
+.sky-lane .plane {
+  position: absolute;
+  top: 50%;
+  left: -2rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-top: -0.875rem;
+  background: var(--accent);
+  -webkit-mask: var(--plane) center / contain no-repeat;
+  mask: var(--plane) center / contain no-repeat;
+  animation: fly 30s linear infinite;
+}
+
+@keyframes fly {
+  from { left: -2rem; }
+  to { left: 100%; }
+}
+
 /* Buttons */
 
 .button,
@@ -186,9 +237,18 @@ h2 {
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-2) var(--space-3);
-  padding: var(--space-3) 0;
-  border-bottom: 1px solid var(--border);
+  margin: var(--space-3) 0 0;
+  padding: var(--space-3);
+  background: var(--surface);
+  border: var(--rule) solid var(--text);
+  border-radius: var(--radius);
   counter-increment: tool;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tool-row:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--text);
 }
 
 .tool-row::before {
@@ -225,6 +285,24 @@ h2 {
 .tool-text p {
   margin: 0;
   color: var(--muted);
+}
+
+.tool-text .tool-why {
+  margin-top: 0.5rem;
+  font-size: 0.9375rem;
+}
+
+.tool-text .tool-why strong {
+  color: var(--text);
+}
+
+/* The perforated stub of the boarding pass holds the Open button */
+.tool-stub {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  padding-left: var(--space-3);
+  border-left: var(--rule) dashed var(--muted);
 }
 
 .tool-link {
@@ -268,6 +346,59 @@ h2 {
   margin: 0 0 var(--space-1);
 }
 
+.learn {
+  max-width: 45rem;
+  margin: var(--space-3) 0;
+  padding: var(--space-3);
+  background: var(--surface);
+  border: var(--rule) solid var(--text);
+  border-radius: var(--radius);
+}
+
+.learn-label {
+  margin: 0 0 var(--space-1);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.learn p {
+  margin: 0;
+}
+
+.learn details {
+  margin-top: var(--space-2);
+}
+
+.learn summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.learn summary::before {
+  content: "+";
+  margin-right: 0.5rem;
+  font-weight: 700;
+}
+
+.learn details[open] summary::before {
+  content: "\2212";
+}
+
+.learn details p {
+  margin-top: var(--space-1);
+  color: var(--muted);
+}
+
 .note {
   max-width: 45rem;
   margin: var(--space-4) 0 0;
@@ -306,6 +437,30 @@ h2 {
   fill: var(--text);
   stroke: var(--bg);
   stroke-width: 2;
+}
+
+@media (max-width: 599px) {
+  .tool-stub {
+    flex-basis: 100%;
+    padding: var(--space-2) 0 0;
+    border-top: var(--rule) dashed var(--muted);
+    border-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sky-lane .plane {
+    left: calc(100% - 3rem);
+    animation: none;
+  }
+
+  .tool-row {
+    transition: none;
+  }
+
+  .tool-row:hover {
+    transform: none;
+  }
 }
 
 @media (min-width: 600px) {
