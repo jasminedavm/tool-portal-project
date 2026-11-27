@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fatigue and alertness check</title>
+  <link rel="stylesheet" href="../../css/styles.css">
+  <link rel="stylesheet" href="fatigue.css">
+  <script src="../../js/theme.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <h1 class="site-title">Tool Portal</h1>
+    <button id="theme-toggle" class="theme-toggle" type="button">Switch to dark theme</button>
+  </header>
+
+  <main>
+    <a class="back-link" href="../../index.html">&larr; Back to portal</a>
+    <h2>Fatigue and alertness check</h2>
+    <p>Enter when you woke up, the time now, and how long you slept. The tool estimates how alert you are, using a simplified version of the two-process model of sleep regulation.</p>
+
+    <form class="tool-form" onsubmit="return false">
+      <div class="field">
+        <label for="wake-time">Time you woke up</label>
+        <input id="wake-time" type="time" value="07:00" required>
+      </div>
+      <div class="field">
+        <label for="current-time">Current time</label>
+        <input id="current-time" type="time" required>
+      </div>
+      <div class="field">
+        <label for="hours-slept">Hours slept last night</label>
+        <input id="hours-slept" type="number" min="0" max="16" step="0.5" value="8" required>
+      </div>
+    </form>
+
+    <div id="result" class="result" aria-live="polite"></div>
+    <div id="chart"></div>
+
+    <p class="note">For learning only. This is a simplified model and must not be used for real flight-safety decisions. It assumes you woke up within the last 24 hours and ignores caffeine, illness, stress, and time zone changes.</p>
+  </main>
+
+  <script src="model.js"></script>
+  <script src="page.js"></script>
+</body>
+</html>

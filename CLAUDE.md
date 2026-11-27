@@ -21,7 +21,8 @@ A web portal where students try out small web tools. The subject area is aviatio
 ## Project Structure
 - `CLAUDE.md` - this file
 - `index.html` - portal homepage
-- `tools/` - one folder per tool; `tools/tool-1/` is a placeholder page
+- `tools/` - one folder per tool
+- `tools/fatigue/` - the fatigue and alertness check (`index.html`, `model.js` for the maths, `page.js` for the page, `fatigue.css`)
 - `css/styles.css` - shared styles and the light/dark theme colors
 - `js/theme.js` - the light/dark theme toggle
 
@@ -60,13 +61,12 @@ None yet.
 ### Phases
 
 **Phase 1: the portal plus its first tool**
-- [x] Step 1: portal homepage, theme toggle, responsive layout, and a placeholder "Tool 1 — coming soon" card that opens and returns via "Back to portal" (done; neutral styling for now, visual design to be chosen later).
-- [ ] Step 2: build the real fatigue tool in place of the placeholder.
-- Portal homepage, light/dark toggle, responsive layout.
-- First tool: a fatigue and alertness check, based on the two-process sleep model.
-- Inputs: time woken up, current time, hours slept last night.
-- Outputs: an alertness score, a label, a 24-hour curve, and a plain-language explanation.
-- Clearly marked as for learning only, not for real flight-safety decisions.
+- [x] Step 1: portal homepage, theme toggle, responsive layout, and a placeholder "Tool 1 — coming soon" card that opens and returns via "Back to portal" (done; neutral styling, visual design to be chosen later).
+- [x] Step 2: the real fatigue and alertness tool replaces the placeholder (done; plain styling).
+  - Based on a simplified two-process sleep model.
+  - Inputs: time woken up, current time, hours slept last night.
+  - Outputs: an alertness score, a label, a 24-hour curve, and a plain-language explanation.
+  - Clearly marked as for learning only, not for real flight-safety decisions.
 
 **Phase 2: more tools** (not planned yet)
 - Add further aviation physiology tools, one at a time, using the steps above.
