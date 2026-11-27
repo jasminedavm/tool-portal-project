@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Altitude and hypoxia explorer</title>
+  <link rel="stylesheet" href="../../css/styles.css">
+  <link rel="stylesheet" href="altitude.css">
+  <script src="../../js/theme.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <h1 class="site-title">Tool Portal</h1>
+    <button id="theme-toggle" class="theme-toggle" type="button">Switch to dark theme</button>
+  </header>
+
+  <main>
+    <a class="back-link" href="../../index.html">&larr; Back to portal</a>
+    <h2>Altitude and hypoxia explorer</h2>
+    <p>Hypoxia means too little oxygen reaching the body. Move the slider to see how air pressure, available oxygen, and the effects on the body change with altitude, with no extra oxygen and no cabin pressurization.</p>
+
+    <div class="slider-field">
+      <label for="altitude">Altitude: <output id="altitude-value" for="altitude"></output></label>
+      <input id="altitude" type="range" min="0" max="45000" step="500" value="10000">
+    </div>
+
+    <div id="result" class="result" aria-live="polite"></div>
+
+    <h3>Oxygen available by altitude</h3>
+    <p class="chart-caption">How much oxygen each breath delivers, compared with sea level.</p>
+    <div id="oxygen-chart"></div>
+
+    <h3>Time of useful consciousness by altitude</h3>
+    <p class="chart-caption">The line shows the middle of the published range. It starts at 20,000 ft, and the scale is logarithmic so that seconds and minutes fit on one chart.</p>
+    <div id="consciousness-chart"></div>
+
+    <p class="note">For learning only. Values are typical figures for healthy adults and vary from person to person, so they must not be used for real flight-safety decisions. Airliner cabins are pressurized to roughly 6,000 to 8,000 ft, so passengers normally stay in the first stage. Time of useful consciousness between published altitudes is estimated.</p>
+  </main>
+
+  <script src="model.js"></script>
+  <script src="page.js"></script>
+</body>
+</html>

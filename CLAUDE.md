@@ -23,6 +23,7 @@ A web portal where students try out small web tools. The subject area is aviatio
 - `index.html` - portal homepage
 - `tools/` - one folder per tool
 - `tools/fatigue/` - the fatigue and alertness check (`index.html`, `model.js` for the maths, `page.js` for the page, `fatigue.css`)
+- `tools/altitude/` - the altitude and hypoxia explorer (`index.html`, `model.js`, `page.js`, `altitude.css`)
 - `css/styles.css` - shared styles and the light/dark theme colors
 - `js/theme.js` - the light/dark theme toggle
 
@@ -68,8 +69,12 @@ None yet.
   - Outputs: an alertness score, a label, a 24-hour curve, and a plain-language explanation.
   - Clearly marked as for learning only, not for real flight-safety decisions.
 
-**Phase 2: more tools** (not planned yet)
-- Add further aviation physiology tools, one at a time, using the steps above.
+**Phase 2: more tools**
+- [x] Altitude and hypoxia explorer (done; plain styling).
+  - Input: altitude from 0 to 45,000 ft, chosen with a slider.
+  - Outputs: air pressure, oxygen available as a share of sea level, hypoxia stage and symptoms, time of useful consciousness, and two charts.
+  - Clearly marked as for learning only, not for real flight-safety decisions.
+- [ ] Further tools: not planned yet. Add them one at a time, using the steps above.
 
 ## Notes for Claude
 - Explain technical terms in plain language
