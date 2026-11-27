@@ -1,34 +1,57 @@
-# CLAUDE.md
+# Tool Portal Project
+
+A web portal where students try out small web tools. The subject area is aviation human physiology.
 
 ## Tech Stack
+- Language: plain HTML, CSS, and JavaScript only
+- Framework: None (no frameworks)
+- Database: None
+- Build step: None (files open directly in a browser)
+- Testing: None yet
 
-- Plain HTML, CSS, and JavaScript only.
-- No frameworks and no build step: files should open directly in a browser.
+## Commands
+- Install: None yet
+- Dev server: None yet (open `index.html` in a browser)
+- Build: None yet
+- Test (all): None yet
+- Test (single file): None yet
+- Lint: None yet
+- Type check: None yet
 
 ## Project Structure
-
-The repository is nearly empty for now. Update this section as files are added.
-
-- `CLAUDE.md`: this file
+The repository is nearly empty for now. Planned layout (see Feature Plan):
+- `CLAUDE.md` - this file
+- `index.html` - portal homepage (not created yet)
+- `tools/` - one folder per tool (not created yet)
+- `css/` - shared styles (not created yet)
+- `js/` - shared scripts, such as the theme toggle (not created yet)
 
 ## Key Requirements
-
 1. Every page must be responsive and work on desktop, tablet, and phone.
 2. Users can toggle between a light and a dark theme. The default is the light theme.
 3. Text must stay easy to read, with good contrast, in both the light and the dark theme.
 
-## Rules for Claude
+## Code Style
+- Follow existing patterns in the surrounding code
+- Prefer small, focused functions
+- Use descriptive names; avoid abbreviations
+- No commented-out code; delete it instead
 
-- Explain technical terms in plain language.
-- Ask before making big changes.
-- Ask rather than guess when something is unclear.
+## Workflow
+- Check pages in a browser (phone, tablet, and desktop widths; both themes) before considering a task done
+- Make small, focused commits with clear messages
+- Don't add new dependencies without asking
+- Don't modify generated or vendor files: None yet
+
+## Testing
+None yet. Until tests exist, check changes by hand in a browser.
+
+## Gotchas
+None yet.
 
 ## Feature Plan
 
-A web portal where students try out small web tools. The subject area is aviation human physiology.
-
 ### Portal structure
-
 - **Homepage** (`index.html`): a short intro and a card for each tool.
 - **Opening a tool:** the visitor clicks a tool's card on the homepage, which opens that tool's own page.
 - **Getting back:** every tool page has a "Back to portal" link to the homepage.
@@ -46,3 +69,9 @@ A web portal where students try out small web tools. The subject area is aviatio
 
 **Phase 2: more tools** (not planned yet)
 - Add further aviation physiology tools, one at a time, using the steps above.
+
+## Notes for Claude
+- Explain technical terms in plain language
+- Ask before making large refactors or architectural changes
+- If requirements are unclear, ask rather than guess
+- Keep explanations brief; show the diff or result
